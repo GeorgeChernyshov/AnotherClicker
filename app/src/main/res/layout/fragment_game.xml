@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.anotherClicker.GameFragment">
+
+    <data>
+        <variable
+            name="gameViewModel"
+            type="com.example.anotherclicker.game.GameViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FFFFFF">
+
+        <TextView
+            android:id="@+id/moneyBox"
+            style="@style/TitleStyle"
+            android:text="@{@string/money_format(String.valueOf(gameViewModel.money.amount))}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/clickableObject"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="124dp"
+            android:layout_marginEnd="28dp"
+            android:layout_marginBottom="156dp"
+            android:background="@android:drawable/btn_default_small"
+            android:backgroundTint="@color/white"
+            android:onClick="@{() -> gameViewModel.addOne()}"
+            android:scaleType="fitCenter"
+            android:scaleX="1"
+            android:scaleY="1"
+            android:scrollbarAlwaysDrawHorizontalTrack="false"
+            android:scrollbarAlwaysDrawVerticalTrack="false"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/green_circle" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

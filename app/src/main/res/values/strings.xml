@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Another Clicker</string>
+    <string name="title_text">Another Clicker!</string>
+    <string name="playButtonText">Play</string>
+    <string name="money_format">%s $</string>
+</resources>
