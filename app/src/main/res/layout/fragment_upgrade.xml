@@ -2,7 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.example.anotherClicker.GameFragment">
+    tools:context="com.example.anotherClicker.screens.UpgradeFragment">
 
     <data>
         <variable
@@ -10,13 +10,10 @@
             type="com.example.anotherclicker.game.GameViewModel" />
     </data>
 
-    <RelativeLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/pager"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-        </androidx.viewpager2.widget.ViewPager2>
-    </RelativeLayout>
+        android:layout_height="match_parent"
+        android:background="#FFFFFF">
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
