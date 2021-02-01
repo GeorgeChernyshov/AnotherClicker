@@ -3,16 +3,26 @@ package com.example.anotherclicker.game.util
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentPagerAdapter
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.example.anotherclicker.game.GameViewModel
+import com.example.anotherclicker.game.screens.ButtonFragment
+import com.example.anotherclicker.game.screens.UpgradeFragment
+import java.lang.Exception
 
-class GamePagerAdapter(fa: FragmentActivity, private val screens: List<Fragment>):
-    FragmentStateAdapter(fa) {
-    override fun getItemCount(): Int {
-        TODO("Not yet implemented")
+class GamePagerAdapter(fragment: Fragment):
+    FragmentStateAdapter(fragment) {
+
+    companion object {
+        val SCREENS_AMOUNT = 2
     }
 
+    override fun getItemCount(): Int = SCREENS_AMOUNT
+
     override fun createFragment(position: Int): Fragment {
-        TODO("Not yet implemented")
+        return when(position) {
+            0 -> ButtonFragment()
+            1 -> UpgradeFragment()
+            else -> throw Exception("Invalid Page Number")
+        }
     }
 }

@@ -7,12 +7,11 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.viewpager.widget.PagerAdapter
-import androidx.viewpager.widget.ViewPager
 import androidx.viewpager2.widget.ViewPager2
 import com.example.anotherclicker.R
 import com.example.anotherclicker.database.MoneyDatabase
 import com.example.anotherclicker.databinding.FragmentGameBinding
+import com.example.anotherclicker.game.util.GamePagerAdapter
 
 class GameFragment : Fragment() {
     private lateinit var viewModelFactory : GameViewModelFactory
@@ -29,6 +28,8 @@ class GameFragment : Fragment() {
         binding.gameViewModel = viewModel
 
         viewPager = binding.pager
+        val gamePagerAdapter = GamePagerAdapter(this)
+        viewPager.adapter = gamePagerAdapter
 
         binding.setLifecycleOwner(this)
 
