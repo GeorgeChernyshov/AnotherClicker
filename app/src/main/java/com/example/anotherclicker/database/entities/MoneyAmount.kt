@@ -1,4 +1,4 @@
-package com.example.anotherclicker.database
+package com.example.anotherclicker.database.entities
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
@@ -10,5 +10,5 @@ data class MoneyAmount (
     var id: Long = 0L,
 
     @ColumnInfo(name="amount")
-    val amount: Long = 0L
+    var amount: Long = 0L
 )

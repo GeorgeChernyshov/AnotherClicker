@@ -16,6 +16,8 @@ class UpgradeFragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         val binding = DataBindingUtil.inflate<FragmentUpgradeBinding>(inflater, R.layout.fragment_upgrade, container, false)
+
+        binding.lifecycleOwner = this
         return binding.root
     }
 }
