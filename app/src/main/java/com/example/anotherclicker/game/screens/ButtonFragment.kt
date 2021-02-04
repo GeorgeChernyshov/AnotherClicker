@@ -32,7 +32,7 @@ class ButtonFragment : Fragment() {
         viewModel = ViewModelProvider(requireActivity(), viewModelFactory).get(GameViewModel::class.java)
         binding.gameViewModel = viewModel
 
-        binding.lifecycleOwner = this
+        binding.setLifecycleOwner(this)
         return binding.root
     }
 }

@@ -4,9 +4,10 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.example.anotherclicker.database.entities.Clicker
 import com.example.anotherclicker.database.entities.MoneyAmount
 
-@Database(entities = [MoneyAmount::class], version = 1,  exportSchema = false)
+@Database(entities = [MoneyAmount::class, Clicker::class], version = 3,  exportSchema = false)
 abstract class MoneyDatabase : RoomDatabase() {
     abstract val moneyDatabaseDao: MoneyDatabaseDao
 

@@ -24,9 +24,13 @@
         android:id="@+id/amount_string"
         android:layout_width="@dimen/amount_string_width"
         android:layout_height="60dp"
-        android:layout_marginEnd="16dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
         android:layout_marginBottom="8dp"
+        android:fontFamily="@font/roboto_medium"
+        android:gravity="center_vertical|right"
+        android:textSize="24sp"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -35,7 +39,7 @@
     <TextView
         android:id="@+id/progress_bar"
         android:layout_width="0dp"
-        android:layout_height="20dp"
+        android:layout_height="24dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="4dp"
         android:layout_marginEnd="8dp"
@@ -46,12 +50,11 @@
 
     <TextView
         android:id="@+id/info_string"
-        android:layout_width="0dp"
-        android:layout_height="20dp"
-        android:layout_marginBottom="4dp"
+        app:layout_constraintBottom_toBottomOf="@+id/clicker_image"
         app:layout_constraintEnd_toEndOf="@+id/progress_bar"
         app:layout_constraintStart_toStartOf="@+id/progress_bar"
-        app:layout_constraintBottom_toBottomOf="@+id/clicker_image"
-        tools:text="$100: White Clicker" />
+        tools:text="$100: White Clicker"
+        android:textColor="@color/black"
+        style="@style/ClickerStyle" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

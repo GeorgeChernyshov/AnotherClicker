@@ -23,12 +23,13 @@ class ClickerAdapter: RecyclerView.Adapter<ClickerAdapter.ViewHolder>() {
 
     override fun onBindViewHolder(holder: ClickerAdapter.ViewHolder, position: Int) {
         val item = data[position]
-        holder.info.text = "${item.cost}$: ${item.name}"
+        holder.infoBox.text = "${item.cost}$: ${item.name}"
+        holder.amountBox.text = item.amount.toString()
 
         holder.clickerImage.setImageResource(when (item.id) {
-            0 -> R.drawable.ic_white_clicker
-            1 -> R.drawable.ic_green_clicker
-            2 -> R.drawable.ic_orange_clicker
+            1 -> R.drawable.ic_white_clicker
+            2 -> R.drawable.ic_green_clicker
+            3 -> R.drawable.ic_orange_clicker
             else -> throw Exception()
         })
     }
@@ -41,7 +42,8 @@ class ClickerAdapter: RecyclerView.Adapter<ClickerAdapter.ViewHolder>() {
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val info: TextView = itemView.findViewById(R.id.info_string)
+        val infoBox: TextView = itemView.findViewById(R.id.info_string)
+        val amountBox: TextView = itemView.findViewById(R.id.amount_string)
         val clickerImage: ImageView = itemView.findViewById(R.id.clicker_image)
     }
 }
