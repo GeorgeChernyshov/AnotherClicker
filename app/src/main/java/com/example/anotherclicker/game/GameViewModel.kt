@@ -18,7 +18,7 @@ class GameViewModel(val database: MoneyDatabaseDao) : ViewModel() {
     val money: LiveData<MoneyAmount>
         get() = _money
 
-    private var _clickers = MutableLiveData<List<Clicker>>()
+    private val _clickers = MutableLiveData<List<Clicker>>()
     val clickers : LiveData<List<Clicker>>
         get() = _clickers
 
@@ -73,18 +73,46 @@ class GameViewModel(val database: MoneyDatabaseDao) : ViewModel() {
         viewModelJob.cancel()
     }
 
-    fun updateMoney() {
+    fun onClickerItemClicked(id: Int) {
+        val item: Clicker = clickers.value!!.first { it.id == id }
+        if(isAffordable(item)) {
+            buyClicker(item)
+        }
+    }
+
+    fun update() {
         if (_money.value == null)
             throw NullPointerException("Money amount is null")
 
         uiScope.launch {
-            update()
+            updateMoney()
+            updateClickers()
         }
     }
 
-    private suspend fun update() {
+    private fun isAffordable(clicker: Clicker) : Boolean {
+        return _money.value!!.amount > clicker.cost
+    }
+
+    private fun buyClicker(clicker: Clicker) {
+        _money.value = MoneyAmount(_money.value!!.id, _money.value!!.amount.minus(clicker.cost))
+        clicker.amount += 1
+        var tmp = _clickers.value!!.toList()
+        _clickers.value = null
+        _clickers.value = tmp
+    }
+
+    private suspend fun updateMoney() {
         withContext(Dispatchers.IO) {
             database.updateMoney(_money.value!!)
+        }
+    }
+
+    private suspend fun updateClickers() {
+        withContext(Dispatchers.IO) {
+            for(item in _clickers.value!!) {
+                database.updateClicker(item)
+            }
         }
     }
 }

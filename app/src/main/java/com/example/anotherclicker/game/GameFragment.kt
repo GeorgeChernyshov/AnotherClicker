@@ -38,6 +38,6 @@ class GameFragment : Fragment() {
 
     override fun onStop() {
         super.onStop()
-        viewModel.updateMoney()
+        viewModel.update()
     }
 }

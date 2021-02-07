@@ -14,6 +14,7 @@ import com.example.anotherclicker.databinding.FragmentClickerBinding
 import com.example.anotherclicker.game.GameViewModel
 import com.example.anotherclicker.game.GameViewModelFactory
 import com.example.anotherclicker.game.util.ClickerAdapter
+import com.example.anotherclicker.game.util.ClickerItemListener
 
 class ClickerFragment : Fragment() {
     private lateinit var viewModelFactory : GameViewModelFactory
@@ -23,8 +24,6 @@ class ClickerFragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         val binding = DataBindingUtil.inflate<FragmentClickerBinding>(inflater, R.layout.fragment_clicker, container, false)
-        val adapter = ClickerAdapter()
-        binding.clickerList.adapter = adapter
 
         val application = requireNotNull(this.activity).application
         val dataSource = MoneyDatabase.getInstance(application).moneyDatabaseDao
@@ -32,8 +31,13 @@ class ClickerFragment : Fragment() {
         viewModel = ViewModelProvider(requireActivity(), viewModelFactory).get(GameViewModel::class.java)
         binding.gameViewModel = viewModel
 
+        val adapter = ClickerAdapter(ClickerItemListener { id ->
+            viewModel.onClickerItemClicked(id)
+        })
+        binding.clickerList.adapter = adapter
+
         viewModel.clickers.observe(viewLifecycleOwner, Observer { clickers ->
-            adapter.data = clickers
+            adapter.submitList(clickers)
         })
 
         binding.lifecycleOwner = this
